@@ -1,5 +1,7 @@
 # imprecv
 
+- run `typst compile template/template.typ --root=../` to compile the template file to PDF.
+
 <p align="center">
   <a href="https://github.com/jskherman/imprecv/stargazers">
     <img alt="Apache-2 License" src="https://img.shields.io/badge/Star%20Repo-⭐-1081c2.svg"/>
