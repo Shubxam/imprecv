@@ -72,7 +72,7 @@
         } else if uservars.showAltLabels and info.basics.altLabels != none {
             block(width: 100%)[
                 #info.basics.altLabels.insert(0, info.basics.label)
-                *#info.basics.altLabels.join(" | ")*
+                *#info.basics.altLabels.join(" / ")*
                 #v(-4pt)
             ]
         }
