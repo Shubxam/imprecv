@@ -29,12 +29,25 @@
 #let strpdate(isodate) = {
     let date = ""
     if lower(isodate) != "present" {
-        let year = int(isodate.slice(0, 4))
-        let month = int(isodate.slice(5, 7))
-        let day = int(isodate.slice(8, 10))
-        let monthName = monthname(month, display: "short")
-        date = datetime(year: year, month: month, day: day)
-        date = monthName + " " + date.display("[year repr:full]")
+        if isodate.len() == 4 {
+            // Handle year-only format (e.g., "2021")
+            let year = int(isodate)
+            date = str(year)
+        } else if isodate.len() >= 10 {
+            // Handle full ISO date format (e.g., "2021-01-01")
+            let year = int(isodate.slice(0, 4))
+            let month = int(isodate.slice(5, 7))
+            let day = int(isodate.slice(8, 10))
+            let monthName = monthname(month, display: "short")
+            date = datetime(year: year, month: month, day: day)
+            date = monthName + " " + date.display("[year repr:full]")
+        } else if isodate.len() >= 7 {
+            // Handle year-month format (e.g., "2021-01")
+            let year = int(isodate.slice(0, 4))
+            let month = int(isodate.slice(5, 7))
+            let monthName = monthname(month, display: "short")
+            date = monthName + " " + str(year)
+        }
     } else if lower(isodate) == "present" {
         date = "Present"
     }
