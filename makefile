@@ -13,5 +13,5 @@ else
 		@bash -c "typst watch template/template.typ --root ."
 
     compile:
-		@bash -c "typst compile template/template.typ"
+		@bash -c "typst compile template/template.typ --root ../"
 endif
