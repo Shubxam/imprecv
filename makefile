@@ -7,6 +7,9 @@ ifeq ($(OS),Windows_NT)
 
     compile:
 		@PowerShell -Command "typst compile template/template.typ"
+
+    lint:
+		@PowerShell -Command "typstyle -i ./"
 else
     # WSL or Unix-like system
     watch:
@@ -14,4 +17,7 @@ else
 
     compile:
 		@bash -c "typst compile template/template.typ --root ../"
+
+    lint:
+		@bash -c "typstyle -i ./"
 endif
