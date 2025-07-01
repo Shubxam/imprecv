@@ -9,27 +9,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v4
         
-      - name: Typst
-        uses: lvignoli/typst-action@main
-        with:
-          source_file: |
-            template/template.typ
+      - name: compile resume
+        run: typst compile template/template.typ resume.pdf --root ../
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
-          name: PDF
-          path: template.pdf
+          name: resume
+          path: resume.pdf
 
       - name: Get current date
         id: date
         run: echo "DATE=$(date +%Y-%m-%d-%H:%M)" >> $GITHUB_ENV
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: github.ref_type == 'tag'
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: "${{ github.ref_name }} — ${{ env.DATE }}"
-          files: template.pdf
+          tag_name: ${{ env.DATE }}
+          release_name: Release ${{ env.DATE }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./resume.pdf
+          asset_name: resume.pdf
+          asset_content_type: application/pdf
