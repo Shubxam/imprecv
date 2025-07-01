@@ -1,5 +1,11 @@
 name: Build Typst document
-on: [push, workflow_dispatch]
+on:
+  push:
+    paths:
+      - 'cv.typ'
+      - 'template/template.typ'
+      - 'template/template.json'
+  workflow_dispatch:
 
 permissions:
   contents: write
