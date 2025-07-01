@@ -442,7 +442,7 @@
       rotate(
         -90deg,
         block[
-          #set text(size: 4pt, font: uservars.endnotefont, fill: silver)
+          #set text(size: 4pt, font: "IBM Plex Mono", fill: silver)
           \*This document was last updated on #datetime.today().display("[year]-[month]-[day]") using #strike(stroke: 1pt)[LaTeX] #underline(link("https://typst.app/home")[*Typst*]). \
           #text(
             size: 1pt,
@@ -456,7 +456,7 @@
     place(
       bottom + right,
       block[
-        #set text(size: 5pt, font: uservars.endnotefont, fill: silver)
+        #set text(size: 5pt, font: "IBM Plex Mono", fill: silver)
         \*This document was last updated on #datetime.today().display("[year]-[month]-[day]") using #strike(stroke: 1pt)[LaTeX] #underline(link("https://typst.app/home")[*Typst*]). \
         #text(
           size: 1pt,
