@@ -1,6 +1,5 @@
 # imprecv
 
-- run `typst compile template/template.typ --root=../` to compile the template file to PDF.
 
 <p align="center">
   <a href="https://github.com/jskherman/imprecv/stargazers">
@@ -20,18 +19,12 @@ This is based on the [popular template on Reddit](https://web.archive.org/https:
 
 ## Demo
 
+run `make compile` to compile the template file to PDF.
+
 See [**example CV**](https://github.com/jskherman/imprecv/releases/latest/download/example.pdf) and [@jskherman's CV](https://go.jskherman.com/cv):
 
-<table cellspacing="0" style="border-collapse: collapse !important; border-spacing: 0 !important;">
- <tr>
-  <td>
-   <img src="https://github.com/jskherman/imprecv/raw/main/assets/thumbnail.1.png" alt="Sample CV Page 1">
-  </td>
-  <td>
-   <img src="https://github.com/jskherman/imprecv/raw/main/assets/thumbnail.2.png" alt="Sample CV Page 2">
-  </td>
- </tr>
-</table>
+
+<img src="./assets/thumbnail.png" alt="Sample CV Page 1">
 
 <!-- <div align="center">
   <img src="https://github.com/jskherman/imprecv/raw/main/assets/thumbnail.1.png" alt="Sample CV Page 1" style="float: left; width: 49%; height: auto;">

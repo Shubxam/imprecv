@@ -13,7 +13,7 @@ ifeq ($(OS),Windows_NT)
 else
     # WSL or Unix-like system
     watch:
-		@bash -c "typst watch template/template.typ --root ."
+		@bash -c "typst watch template/template.typ --root ../"
 
     compile:
 		@bash -c "typst compile template/template.typ --root ../"
