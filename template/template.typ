@@ -1,6 +1,6 @@
 #import "../cv.typ": *
 
-#let cvdata = json("resume.json")
+#let cvdata = json("template.json")
 
 #let uservars = (
   headingfont: "Libertinus Serif",
@@ -56,7 +56,7 @@
 #cvheading(cvdata, uservars)
 #cvwork(cvdata)
 #cvprojects(cvdata)
-#cvaffiliations(cvdata)
+// #cvaffiliations(cvdata)
 #cveducation(cvdata)
 #cvawards(cvdata)
 #cvcertificates(cvdata)

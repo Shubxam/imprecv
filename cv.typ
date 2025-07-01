@@ -309,7 +309,7 @@
             *#award.title* #h(1fr) *#award.location* \
           ]
           // Line 2: Issuer and Date
-          Issued by #text(style: "italic")[#award.issuer]  #h(1fr) #date \
+          Issued by #text(style: "italic")[#award.awarder]  #h(1fr) #date \
           // Summary or Description
           #if award.highlights != none {
             for hi in award.highlights [
