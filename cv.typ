@@ -81,28 +81,9 @@
   }
 }
 
-// Address
-#let addresstext(info, uservars) = {
-  if uservars.showAddress {
-    // Filter out empty address fields
-    let address = info
-      .basics
-      .location
-      .pairs()
-      .filter(it => it.at(1) != none and str(it.at(1)) != "")
-    // Join non-empty address fields with commas
-    let location = address.map(it => str(it.at(1))).join(", ")
-
-    block(width: 100%)[
-      #location
-      #v(-4pt)
-    ]
-  } else { none }
-}
-
 #let contacttext(info, uservars) = block(width: 100%)[
   #let profiles = (
-    if uservars.showNumber { box(link("tel:" + info.basics.phone)) } else {
+    if uservars.showNumber { box(info.basics.phone) } else {
       none
     },
     box(link("mailto:" + info.basics.email)),
@@ -117,6 +98,21 @@
     }
   }
 
+  #if uservars.showAddress {
+    // Filter out empty address fields
+    let address = info
+      .basics
+      .location
+      .pairs()
+      .filter(it => it.at(1) != none and str(it.at(1)) != "")
+    // Join non-empty address fields with commas
+    let location = address.map(it => str(it.at(1))).join(", ")
+
+    if location != "" {
+      profiles.push(box(location))
+    }
+  } else { none }
+
   #set text(
     font: uservars.bodyfont,
     weight: "semibold",
@@ -129,7 +125,7 @@
   }
   
   #pad(x: 0em)[
-    #profiles.join([#sym.space.en #sym.diamond.filled #sym.space.en])
+    #profiles.join([#sym.space #sym.bar #sym.space])
   ]
 ]
 
@@ -137,7 +133,6 @@
   align(center)[
     = #info.basics.name
     #jobtitletext(info, uservars)
-    #addresstext(info, uservars)
     #contacttext(info, uservars)
   ]
 }
