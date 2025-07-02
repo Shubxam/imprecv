@@ -102,18 +102,18 @@
 
 #let contacttext(info, uservars) = block(width: 100%)[
   #let profiles = (
+    if uservars.showNumber { box(link("tel:" + info.basics.phone)) } else {
+      none
+    },
     box(link("mailto:" + info.basics.email)),
     if info.basics.url != none {
       box(link(info.basics.url)[#info.basics.url.split("//").at(1)])
-    },
-    if uservars.showNumber { box(link("tel:" + info.basics.phone)) } else {
-      none
     },
   ).filter(it => it != none) // Filter out none elements from the profile array
 
   #if info.basics.profiles.len() > 0 {
     for profile in info.basics.profiles {
-      profiles.push(box(link(profile.url)[#profile.url.split("//").at(1)]))
+      profiles.push(box(link(profile.url)[#profile.network/#profile.username]))
     }
   }
 
