@@ -119,9 +119,15 @@
 
   #set text(
     font: uservars.bodyfont,
-    weight: "medium",
+    weight: "semibold",
     size: uservars.fontsize * 1,
   )
+  
+  #show link: it => {
+    set text(fill: blue)
+    underline(it, offset: 2pt)
+  }
+  
   #pad(x: 0em)[
     #profiles.join([#sym.space.en #sym.diamond.filled #sym.space.en])
   ]
@@ -270,7 +276,11 @@
             #text(style: "italic")[#project.description]
           ]
           #if project.url != none [
-            *#link(project.url)[#project.name]* #strong(sym.tilde) #keywordstxt \
+            *#show link: it => {
+              set text(fill: blue)
+              underline(it, offset: 2pt)
+            }
+            #link(project.url)[#project.name]* #strong(sym.tilde) #keywordstxt \
           ] else [
             *#project.name* : #keywordstxt \
           ]
@@ -338,7 +348,11 @@
         block(width: 100%, breakable: isbreakable)[
           // Line 1: Certificate Name and ID (if applicable)
           #if cert.url != none [
-            *#link(cert.url)[#cert.name]* #h(1fr)
+            *#show link: it => {
+              set text(fill: blue)
+              underline(it, offset: 2pt)
+            }
+            #link(cert.url)[#cert.name]* #h(1fr)
           ] else [
             *#cert.name* #h(1fr)
           ]
