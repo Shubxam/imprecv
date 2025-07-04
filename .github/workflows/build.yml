@@ -37,9 +37,10 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          # Delete local and remote tag if exists, then create and push
+          # Delete the tag remotely if it exists
+          git push --delete origin ${{ steps.date.outputs.date }} || true
+          # Delete the tag locally if it exists
           git tag -d ${{ steps.date.outputs.date }} || true
-          git push origin :refs/tags/${{ steps.date.outputs.date }} || true
           git tag ${{ steps.date.outputs.date }}
           git push origin ${{ steps.date.outputs.date }}
 
