@@ -282,8 +282,12 @@
             }
             #sym.bullet #link(project.url)[#project.name]* using #keywordstxt #h(1fr) 
             #utils.daterange(start, end) \
-          ] else [
-            #sym.bullet *#project.name* using #keywordstxt : \
+          ] else if project.url != none [
+            *#show link: it => {
+              set text(fill: blue)
+              underline(it, offset: 2pt)
+            }
+            #sym.bullet #link(project.url)[#project.name]* using #keywordstxt : \
           ]
           // Line 2: Summary or Description
           #if project.highlights != none {
