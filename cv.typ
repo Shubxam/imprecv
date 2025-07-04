@@ -118,12 +118,12 @@
     weight: "semibold",
     size: uservars.fontsize * 1,
   )
-  
+
   #show link: it => {
     set text(fill: blue)
     underline(it, offset: 2pt)
   }
-  
+
   #pad(x: 0em)[
     #profiles.join([#sym.space #sym.bar #sym.space])
   ]
@@ -214,7 +214,7 @@
 
 #let cvaffiliations(
   info,
-  title: "Leadership and Activities",
+  title: "Affiliations",
   isbreakable: true,
 ) = {
   if info.volunteer != none {
@@ -252,16 +252,21 @@
   }
 }
 
-#let cvprojects(info, title: "Projects", isbreakable: true) = {
+#let cvprojects(info, uservars, title: "Projects", isbreakable: true) = {
   if info.projects != none {
     block[
       == #title
       #for project in info.projects {
         // Parse ISO date strings into datetime objects
-        let start = utils.strpdate(project.startDate)
-        let end = if "endDate" in project.keys() and project.endDate != none {
-          utils.strpdate(project.endDate)
-        } else { "Present" }
+        if uservars.needdateinprojects{
+          let start = if "startDate" in project.keys() and project.startDate != none {
+            utils.strpdate(project.startDate)
+          } else { "Present" }
+          let end = if "endDate" in project.keys() and project.endDate != none {
+            utils.strpdate(project.endDate)
+          } else { "Present" }
+        }
+
         // Create a block layout for each project entry
         block(width: 100%, breakable: isbreakable)[
           #let keywordstxt = if (
