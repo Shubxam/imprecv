@@ -14,6 +14,7 @@
   showAltLabels: true, // true/false show alternative labels in heading
   headingsmallcaps: false, // true/false use small caps for headings
   sendnote: false, // set to false to have sideways endnote
+  needdateinprojects: false, // true/false show date in projects
 )
 
 // setrules and showrules can be overridden by re-declaring it here
