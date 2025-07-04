@@ -258,14 +258,12 @@
       == #title
       #for project in info.projects {
         // Parse ISO date strings into datetime objects
-        if uservars.needdateinprojects{
-          let start = if "startDate" in project.keys() and project.startDate != none {
-            utils.strpdate(project.startDate)
-          } else { "Present" }
-          let end = if "endDate" in project.keys() and project.endDate != none {
-            utils.strpdate(project.endDate)
-          } else { "Present" }
-        }
+        let start = if "startDate" in project.keys() and project.startDate != none {
+          utils.strpdate(project.startDate)
+        } else { "Present" }
+        let end = if "endDate" in project.keys() and project.endDate != none {
+          utils.strpdate(project.endDate)
+        } else { "Present" }
 
         // Create a block layout for each project entry
         block(width: 100%, breakable: isbreakable)[
