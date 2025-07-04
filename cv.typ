@@ -275,12 +275,13 @@
           #let descriptiontext = if "description" in project.keys() and project.description != none [
             #text(style: "italic")[#project.description]
           ]
-          #if project.url != none [
+          #if project.url != none and uservars.needdateinprojects [
             *#show link: it => {
               set text(fill: blue)
               underline(it, offset: 2pt)
             }
-            #sym.bullet #link(project.url)[#project.name]* using #keywordstxt : \
+            #sym.bullet #link(project.url)[#project.name]* using #keywordstxt #h(1fr) 
+            #utils.daterange(start, end) \
           ] else [
             #sym.bullet *#project.name* using #keywordstxt : \
           ]
