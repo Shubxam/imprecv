@@ -37,6 +37,8 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+          # check if the tag already exists if so, remove it
+          git tag -d ${{ steps.date.outputs.date }} || true
           git tag ${{ steps.date.outputs.date }}
           git push origin ${{ steps.date.outputs.date }}
 
